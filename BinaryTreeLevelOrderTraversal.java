@@ -1,4 +1,5 @@
 // Algo: Use a simple BFS using a queue
+// Any problems faced: calculating SC for BFS with Q
 // LC 102
 
 import java.util.ArrayDeque;
@@ -9,12 +10,12 @@ import java.util.List;
 public class BinaryTreeLevelOrderTraversal {
     /**
      * TC: O(n)
-     * SC: O(n)
+     * SC: O(n/2) == the leaf nodes in case of a complete BST
      *
      * @param root
      * @return
      */
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrder_bfs(TreeNode root) {
         List<List<Integer>> bfs = new ArrayList<>();
         // check for edge case if root is null
         if (root == null) {
@@ -39,6 +40,29 @@ public class BinaryTreeLevelOrderTraversal {
             bfs.add(res);
         }
         return bfs;
+    }
+
+    public List<List<Integer>> levelOrder_dfs(TreeNode root) {
+        List<List<Integer>> bfs = new ArrayList<>();
+        // check for edge case if root is null
+        if (root == null) {
+            return bfs;
+        }
+        dfs(bfs, root, 0);
+        return bfs;
+    }
+
+    private void dfs(List<List<Integer>> bfs, TreeNode root, int level) {
+        if (root == null) {
+            return;
+        }
+        if(bfs.isEmpty() || bfs.size() == level) {
+            bfs.add(new ArrayList<>());
+        }
+        List<Integer> res = bfs.get(level);
+        res.add(root.val);
+        dfs(bfs, root.left, level + 1);
+        dfs(bfs, root.right, level + 1);
     }
 }
 
