@@ -42,6 +42,15 @@ public class BinaryTreeLevelOrderTraversal {
         return bfs;
     }
 
+    /**
+     * TC: O(n)
+     * SC: O(h), in the worst case due to skewed tree, it can be O(n)
+     * <p>
+     * NOTE: any pre, post, in order traversals work fine here as we're adding the node to a level in a sequential manner
+     *
+     * @param root
+     * @return
+     */
     public List<List<Integer>> levelOrder_dfs(TreeNode root) {
         List<List<Integer>> bfs = new ArrayList<>();
         // check for edge case if root is null
@@ -56,7 +65,7 @@ public class BinaryTreeLevelOrderTraversal {
         if (root == null) {
             return;
         }
-        if(bfs.isEmpty() || bfs.size() == level) {
+        if (bfs.size() == level) {
             bfs.add(new ArrayList<>());
         }
         List<Integer> res = bfs.get(level);
