@@ -46,7 +46,8 @@ public class BinaryTreeLevelOrderTraversal {
      * TC: O(n)
      * SC: O(h), in the worst case due to skewed tree, it can be O(n)
      * <p>
-     * NOTE: any pre, post, in order traversals work fine here as we're adding the node to a level in a sequential manner
+     * NOTE: any pre and in order traversals work fine here as we're adding the node to a level in a sequential manner.
+     * but post-order traversal will fail here due to reverse order of nodes per level.
      *
      * @param root
      * @return
